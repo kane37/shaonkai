@@ -15,13 +15,11 @@
 @media(prefers-reduced-motion:reduce){.reveal,.campus-photo{transition:none!important;animation:none!important;transform:none!important}.js .reveal{opacity:1}.campus-photo{opacity:.62}}
 
 
-/* Decorative roses supplied by the organizer; separate compositions by section */
+/* Gold floral motifs from supplied reference; no clipped pseudo-elements */
 .hero{overflow:hidden;background:var(--bg)}
-.hero::before,.hero::after{content:"";position:absolute;pointer-events:none;z-index:1;background:url('rose-side.png') center/contain no-repeat;opacity:.52;width:180px;height:230px}
-.hero::before{top:-55px;left:-98px;transform:rotate(-12deg)}
-.hero::after{bottom:-60px;right:-105px;transform:rotate(168deg)}
+.hero::before,.hero::after{content:none!important}
 .hero .frame{position:relative;z-index:2;background:#f8f4ebed}
-.section{position:relative;overflow:hidden;isolation:isolate}
+.section{position:relative;isolation:isolate}
 .section::before,.section::after{content:none!important}
 .invitation-photo::after{content:''!important;position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,var(--bg) 1%,transparent 30%,transparent 70%,var(--bg) 99%)}
 .invitation-photo .campus-photo{z-index:0}
@@ -32,16 +30,26 @@
 .time-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:320px;margin:auto}
 .time-row span{display:block;font-size:clamp(34px,10vw,47px);line-height:1.15;font-weight:400;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .time-row small{display:block;font:9px Georgia,serif;letter-spacing:.13em;color:#9b835f;margin-top:6px}
-/* Information: rose-and-vine arrangement at top, without duplicating it below */
-.info-section{padding-top:135px;min-height:450px}
-.info-section::before{content:''!important;display:block;position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(94%,440px);height:140px;background:url('rose-top.png') center top/contain no-repeat;opacity:.70;pointer-events:none;z-index:0}
-.info-section>*{position:relative;z-index:1}
-/* RSVP: a single rose at lower right, no vine framing */
-.rsvp-section{min-height:470px;padding-bottom:120px}
-.rsvp-section::after{content:''!important;display:block;position:absolute;right:12px;bottom:12px;width:105px;height:105px;background:url('rose-single.png') center/contain no-repeat;opacity:.68;pointer-events:none;z-index:0}
-.rsvp-section>*{position:relative;z-index:1}
-@media(max-width:380px){.hero::before{left:-115px}.hero::after{right:-115px}.info-section{padding-top:120px}.big-days{font-size:104px}}
-</style></head><body><main><header class="hero"><div class="frame"><div class="eyebrow">YOU ARE CORDIALLY INVITED</div><h1>The Gratitude<br>Reception</h1><div class="sub">謝恩会へのご招待</div><div class="divider"></div><div class="date">MARCH 1, 2027</div><div class="eyebrow">MONDAY · SCHOOL GYMNASIUM</div><div class="scroll">SCROLL TO EXPLORE ↓</div></div></header><section class="section invitation-photo"><img class="campus-photo" src="school-photo.jpg" alt="" loading="eager"><div class="reveal"><div class="eyebrow">WITH HEARTFELT GRATITUDE</div><h2>Invitation</h2><div class="divider"></div><p>先生方へ<br><br>これまで私たちを温かく見守り<br>支えてくださった先生方に<br>心からの感謝を込めて<br>特別なひとときをご用意いたしました。<br><br>皆さまと過ごす大切な一日を<br>楽しみにしております。</p></div></section><section class="section count reveal"><div class="eyebrow">COUNTDOWN TO OUR SPECIAL DAY</div><h2>Until the Day</h2><div class="count-display" aria-live="off"><div class="big-days" id="days">--</div><div class="days-label">DAYS</div><div class="time-row"><div><span id="hours">--</span><small>HOURS</small></div><div><span id="minutes">--</span><small>MINUTES</small></div><div><span id="seconds">--</span><small>SECONDS</small></div></div></div><p id="count-message" class="note">2027年3月1日まで</p></section><section class="section reveal info-section"><div class="eyebrow">EVENT DETAILS</div><h2>Information</h2><div class="divider"></div><div class="info">2027年3月1日（月）<br>会場：体育館<br>開宴時刻：後日ご案内</div></section><section class="section count reveal rsvp-section"><div class="eyebrow">RÉPONDEZ S'IL VOUS PLAÎT</div><h2>R.S.V.P.</h2><p>ご出欠をお知らせください。</p><span class="button disabled" aria-disabled="true">ご回答はこちら（準備中）</span><p class="note">試作品のため、まだ回答は送信されません。<br>GoogleフォームのURLを設定すると利用できます。</p></section><footer class="footer">WITH LOVE AND GRATITUDE · 2027</footer></main><script>
+/* Full floral artwork is scaled to fit rather than cropped */
+.hero-floral{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;opacity:.52;z-index:1}
+.info-section{min-height:490px;padding-top:205px;overflow:visible}
+.info-floral{position:absolute;top:0;right:0;width:min(80%,330px);height:195px;object-fit:contain;object-position:top right;pointer-events:none;opacity:.8;z-index:0}
+.info-section>*:not(.info-floral){position:relative;z-index:1}
+.rsvp-section{min-height:480px;padding-bottom:160px;overflow:visible}
+.rsvp-flower{position:absolute;right:22px;bottom:18px;width:135px;height:135px;object-fit:contain;opacity:.77;pointer-events:none;z-index:0}
+.rsvp-section>*:not(.rsvp-flower){position:relative;z-index:1}
+@media(max-width:380px){.info-section{padding-top:190px}.big-days{font-size:104px}.rsvp-flower{width:115px;height:115px}}
+
+/* Final botanical arrangement: fine-line frame on cover, unique small motifs on later pages. */
+.hero{background:#f8f4eb;overflow:hidden;min-height:95svh;padding:26px 18px}
+.hero .frame{background:transparent;border:0;outline:0;max-width:390px;padding:95px 24px;z-index:2}
+.cover-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:1;pointer-events:none;opacity:.95}
+.info-section{padding-top:110px;min-height:480px;overflow:hidden}
+.info-floral{position:absolute;top:20px;right:20px;width:210px;height:105px;object-fit:contain;opacity:.78}
+.rsvp-section{overflow:hidden;padding-bottom:120px}
+.rsvp-flower{position:absolute;right:20px;bottom:22px;width:100px;height:100px;object-fit:contain;opacity:.86}
+@media(max-width:380px){.hero .frame{padding:95px 18px}.info-floral{width:165px;height:90px}.info-section{padding-top:105px}}
+</style></head><body><main><header class="hero"><img class="cover-frame" src="gold-frame.svg" alt="" aria-hidden="true"><div class="frame"><div class="eyebrow">YOU ARE CORDIALLY INVITED</div><h1>The Gratitude<br>Reception</h1><div class="sub">謝恩会へのご招待</div><div class="divider"></div><div class="date">MARCH 1, 2027</div><div class="eyebrow">MONDAY · SCHOOL GYMNASIUM</div><div class="scroll">SCROLL TO EXPLORE ↓</div></div></header><section class="section invitation-photo"><img class="campus-photo" src="school-photo.jpg" alt="" loading="eager"><div class="reveal"><div class="eyebrow">WITH HEARTFELT GRATITUDE</div><h2>Invitation</h2><div class="divider"></div><p>先生方へ<br><br>これまで私たちを温かく見守り<br>支えてくださった先生方に<br>心からの感謝を込めて<br>特別なひとときをご用意いたしました。<br><br>皆さまと過ごす大切な一日を<br>楽しみにしております。</p></div></section><section class="section count reveal"><div class="eyebrow">COUNTDOWN TO OUR SPECIAL DAY</div><h2>Until the Day</h2><div class="count-display" aria-live="off"><div class="big-days" id="days">--</div><div class="days-label">DAYS</div><div class="time-row"><div><span id="hours">--</span><small>HOURS</small></div><div><span id="minutes">--</span><small>MINUTES</small></div><div><span id="seconds">--</span><small>SECONDS</small></div></div></div><p id="count-message" class="note">2027年3月1日まで</p></section><section class="section reveal info-section"><img class="info-floral" src="gold-sprig.svg" alt="" aria-hidden="true"><div class="eyebrow">EVENT DETAILS</div><h2>Information</h2><div class="divider"></div><div class="info">2027年3月1日（月）<br>会場：体育館<br>開宴時刻：後日ご案内</div></section><section class="section count reveal rsvp-section"><img class="rsvp-flower" src="gold-flower.svg" alt="" aria-hidden="true"><div class="eyebrow">RÉPONDEZ S'IL VOUS PLAÎT</div><h2>R.S.V.P.</h2><p>ご出欠をお知らせください。</p><span class="button disabled" aria-disabled="true">ご回答はこちら（準備中）</span><p class="note">試作品のため、まだ回答は送信されません。<br>GoogleフォームのURLを設定すると利用できます。</p></section><footer class="footer">WITH LOVE AND GRATITUDE · 2027</footer></main><script>
 document.documentElement.classList.add("js");
 // 日付は日本時間の2027年3月1日午前0時。開宴時刻が決まったら変更できます。
 const target=new Date('2027-03-01T00:00:00+09:00').getTime();
